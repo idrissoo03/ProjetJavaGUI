@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchController">
+
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="20" />
+            </padding>
+            <Label text="🔍 RECHERCHE DE PRODUIT" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20.0">
+            <padding>
+                <Insets bottom="30" left="40" right="40" top="30" />
+            </padding>
+
+            <!-- Search Options -->
+<!-- Search Options -->
+			<VBox prefWidth="400.0" spacing="15.0">
+			    <Label style="-fx-font-weight: bold;" text="Type de recherche:" textFill="#2d3748" />
+			    <HBox alignment="CENTER" spacing="30.0">
+			        <RadioButton fx:id="searchByNameRadio" selected="true" style="-fx-text-fill: #4a5568;" text="Par nom" />
+			        <RadioButton fx:id="searchByCategoryRadio" style="-fx-text-fill: #4a5568;" text="Par catégorie" />
+			    </HBox>
+			</VBox>
+
+
+            <!-- Search Input -->
+            <VBox prefWidth="400.0" spacing="10.0">
+                <Label fx:id="searchInputLabel" text="Nom du produit:" textFill="#4a5568" />
+                <TextField fx:id="searchInputField" promptText="Entrez votre recherche..." style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e0; -fx-padding: 10;" />
+                
+                <Button fx:id="searchExecuteButton" onAction="#handleSearchExecute" prefHeight="45.0" prefWidth="400.0" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="🔍 Lancer la recherche" />
+            </VBox>
+
+            <!-- Results Section -->
+            <VBox prefWidth="800.0" spacing="10.0">
+                <Label fx:id="resultsLabel" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Résultats de la recherche" textFill="#2d3748" visible="false" />
+                
+                <TableView fx:id="resultsTable" prefHeight="300.0" visible="false">
+                    <columns>
+                        <TableColumn fx:id="resultIdColumn" prefWidth="80" text="ID" />
+                        <TableColumn fx:id="resultNameColumn" prefWidth="200" text="Nom" />
+                        <TableColumn fx:id="resultCategoryColumn" prefWidth="150" text="Catégorie" />
+                        <TableColumn fx:id="resultPriceColumn" prefWidth="100" text="Prix" />
+                        <TableColumn fx:id="resultStockColumn" prefWidth="100" text="Stock" />
+                        <TableColumn fx:id="resultExpiryColumn" prefWidth="120" text="Expiration" />
+                    </columns>
+                </TableView>
+                
+                <Label fx:id="noResultsLabel" style="-fx-font-style: italic;" text="ℹ️ Aucun produit trouvé" textFill="#718096" visible="false" />
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="15.0">
+                <Button fx:id="newSearchButton" onAction="#handleNewSearch" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;" text="🔄 Nouvelle recherche" />
+                
+                <Button fx:id="backButton" onAction="#handleBackButton" style="-fx-background-color: #718096; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;" text="🔙 Retour" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

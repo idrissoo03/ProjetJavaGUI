@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminDashboardController">
+
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="20" />
+            </padding>
+            <children>
+                <Label fx:id="adminWelcomeLabel" text="MENU ADMINISTRATEUR - Admin Principal" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <GridPane alignment="CENTER" hgap="20" vgap="20">
+            <padding>
+                <Insets bottom="40" left="40" right="40" top="40" />
+            </padding>
+            
+            <columnConstraints>
+                <ColumnConstraints prefWidth="300" />
+                <ColumnConstraints prefWidth="300" />
+                <ColumnConstraints prefWidth="300" />
+            </columnConstraints>
+            
+            <rowConstraints>
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+            </rowConstraints>
+
+            <!-- Row 1 -->
+            <Button fx:id="viewInventoryButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleViewInventory" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="📦 Voir l'inventaire complet" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            
+            <Button fx:id="manageSaleButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleManageSale" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🛒 Gérer une vente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Button fx:id="addArticleButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleAddArticle" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="➕ Ajouter un article" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+            <!-- Row 2 -->
+            <Button fx:id="editArticleButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleEditArticle" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="✏️ Modifier un article" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            
+            <Button fx:id="deleteArticleButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleDeleteArticle" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🗑️ Supprimer un article" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Button fx:id="searchArticleButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleSearchArticle" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🔍 Rechercher un article" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+            <!-- Row 3 -->
+            <Button fx:id="generateReportButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleGenerateReport" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="📊 Générer un rapport" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            
+            <Button fx:id="viewSalesButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleViewSales" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="💰 Voir les ventes du jour" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Button fx:id="checkExpiredButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleCheckExpired" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="⚠️ Vérifier les articles périmés" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+            <!-- Row 4 -->
+            <Button fx:id="logoutButton" maxHeight="80" maxWidth="1.7976931348623157E308" onAction="#handleLogout" style="-fx-background-color: #e74c3c; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🚪 Déconnexion" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="3" />
+        </GridPane>
+    </center>
+</BorderPane>

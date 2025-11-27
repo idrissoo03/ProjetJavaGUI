@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Top Header -->
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="20" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Label style="-fx-font-size: 28;" text="🍎" />
+                        <VBox>
+                            <children>
+                                <Label text="MENU ADMINISTRATEUR" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Admin Principal" textFill="#e8f5e8">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+
+    <!-- Center Content -->
+    <center>
+        <GridPane alignment="CENTER" hgap="20" vgap="20">
+            <padding>
+                <Insets bottom="40" left="40" right="40" top="40" />
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints prefWidth="300" />
+                <ColumnConstraints prefWidth="300" />
+                <ColumnConstraints prefWidth="300" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+                <RowConstraints prefHeight="120" />
+            </rowConstraints>
+
+            <!-- Row 1 -->
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="📋 Voir les produits disponibles" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🔍 Rechercher un produit" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="➕ Ajouter un article au panier" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+            <!-- Row 2 -->
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="📦 Voir le panier actuel" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="✏️  Modifier le panier" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="💳 Finaliser la vente et payer" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+            <!-- Row 3 -->
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e2e8f0; -fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="❌ Annuler la vente" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            
+            
+
+            <!-- Row 4 - Logout button centered -->
+            <Button maxHeight="80" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e74c3c; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" text="🚪 Déconnexion" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="3" />
+
+        </GridPane>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <VBox style="-fx-background-color: #2d3748;">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER" spacing="20">
+                    <padding>
+                        <Insets top="5" />
+                    </padding>
+                    <children>
+                        <Label text="🍎 FreshMarket Pro - Système de Gestion d'Épicerie" textFill="#a0aec0">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="● Connecté" textFill="#48bb78">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+
+</BorderPane>

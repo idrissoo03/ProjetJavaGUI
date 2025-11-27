@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReportsController">
+
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="20" />
+            </padding>
+            <Label text="📊 RAPPORTS ET ANALYTIQUES" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20.0">
+            <padding>
+                <Insets bottom="30" left="40" right="40" top="30" />
+            </padding>
+
+            <!-- Report Type Selection -->
+            <VBox prefWidth="600.0" spacing="15.0">
+                <Label style="-fx-font-weight: bold;" text="Type de rapport:" textFill="#2d3748" />
+                <GridPane hgap="20" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="280" />
+                        <ColumnConstraints prefWidth="280" />
+                    </columnConstraints>
+                    
+                    <rowConstraints>
+                        <RowConstraints prefHeight="40" />
+                        <RowConstraints prefHeight="40" />
+                    </rowConstraints>
+
+                    <RadioButton fx:id="salesReportRadio" selected="true" style="-fx-text-fill: #4a5568;" text="📈 Rapport des ventes" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="reportTypeGroup" />
+                  </toggleGroup></RadioButton>
+                    
+                    <RadioButton fx:id="inventoryReportRadio" style="-fx-text-fill: #4a5568;" text="📦 Rapport d'inventaire" toggleGroup="$reportTypeGroup" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    
+                    <RadioButton fx:id="expiredReportRadio" style="-fx-text-fill: #4a5566;" text="⚠️ Articles périmés" toggleGroup="$reportTypeGroup" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    
+                    <RadioButton fx:id="lowStockReportRadio" style="-fx-text-fill: #4a5568;" text="📊 Articles à faible stock" toggleGroup="$reportTypeGroup" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                </GridPane>
+            </VBox>
+
+            <!-- Date Range Selection -->
+            <VBox prefWidth="600.0" spacing="10.0">
+                <Label style="-fx-font-weight: bold;" text="Période:" textFill="#2d3748" />
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="Du:" textFill="#4a5568" />
+                    <DatePicker fx:id="startDateField" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e0;" />
+                    
+                    <Label text="Au:" textFill="#4a5568" />
+                    <DatePicker fx:id="endDateField" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e0;" />
+                </HBox>
+            </VBox>
+
+            <!-- Generate Button -->
+            <Button fx:id="generateReportButton" onAction="#generateReport" prefHeight="45.0" prefWidth="300.0" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="🔄 Générer le rapport" />
+
+            <!-- Report Results -->
+            <VBox fx:id="reportResultsSection" prefWidth="900.0" spacing="15.0" visible="false">
+                <Label fx:id="reportTitle" style="-fx-font-weight: bold; -fx-font-size: 18;" text="Rapport des ventes" textFill="#2d3748" />
+                
+                <!-- Sales Report Content -->
+                <VBox fx:id="salesReportContent" spacing="10.0" visible="true">
+                    <HBox spacing="20.0">
+                        <VBox spacing="5.0">
+                            <Label text="Total des ventes:" textFill="#4a5568" />
+                            <Label fx:id="totalSalesLabel" style="-fx-font-weight: bold;" text="0.00€" textFill="#27ae60" />
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                            <Label text="Nombre de transactions:" textFill="#4a5568" />
+                            <Label fx:id="transactionCountLabel" style="-fx-font-weight: bold;" text="0" textFill="#27ae60" />
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                            <Label text="Vente moyenne:" textFill="#4a5568" />
+                            <Label fx:id="averageSaleLabel" style="-fx-font-weight: bold;" text="0.00€" textFill="#27ae60" />
+                        </VBox>
+                    </HBox>
+                    
+                    <TableView fx:id="salesTable" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="saleIdColumn" prefWidth="100" text="ID Vente" />
+                            <TableColumn fx:id="saleDateColumn" prefWidth="120" text="Date" />
+                            <TableColumn fx:id="saleItemsColumn" prefWidth="100" text="Articles" />
+                            <TableColumn fx:id="saleTotalColumn" prefWidth="100" text="Total" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Inventory Report Content -->
+                <VBox fx:id="inventoryReportContent" spacing="10.0" visible="false">
+                    <HBox spacing="20.0">
+                        <VBox spacing="5.0">
+                            <Label text="Total des articles:" textFill="#4a5568" />
+                            <Label fx:id="totalItemsLabel" style="-fx-font-weight: bold;" text="0" textFill="#27ae60" />
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                            <Label text="Valeur totale:" textFill="#4a5568" />
+                            <Label fx:id="totalValueLabel" style="-fx-font-weight: bold;" text="0.00€" textFill="#27ae60" />
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                            <Label text="Articles à faible stock:" textFill="#4a5568" />
+                            <Label fx:id="lowStockCountLabel" style="-fx-font-weight: bold;" text="0" textFill="#e74c3c" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Export Button -->
+                <Button fx:id="exportReportButton" onAction="#exportReport" style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;" text="💾 Exporter le rapport" />
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="15.0">
+                <Button fx:id="backButton" onAction="#goBack" style="-fx-background-color: #718096; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;" text="🔙 Retour au tableau de bord" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

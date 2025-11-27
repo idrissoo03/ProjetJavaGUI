@@ -1,0 +1,12 @@
+.pae {
+    -fx-background-color: #ffffff;   
+    -fx-background-radius: 15px;     
+    
+    -fx-border-color: #BB86FC;      
+    -fx-border-width: 2px;          
+    -fx-border-radius: 15px;         
+}
+
+.scrollpane {
+	-fx-background-color:black;
+}

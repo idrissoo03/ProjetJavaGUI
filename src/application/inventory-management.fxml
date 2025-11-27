@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="700.0" prefWidth="1200.0"
+            style="-fx-background-color: #f8f9fa;">
+
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+            <children>
+                <Label text="📦 GESTION DE L'INVENTAIRE" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="24.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20.0" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <!-- Search and Filter Bar -->
+            <HBox spacing="15.0" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="Rechercher un article..." 
+                           prefWidth="300.0"
+                           style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cbd5e0; -fx-padding: 8;"/>
+                
+                <ComboBox fx:id="categoryFilter" promptText="Toutes les catégories" 
+                          prefWidth="200.0"/>
+                
+                <Button fx:id="searchButton" text="🔍 Rechercher" 
+                        style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                
+                <Button fx:id="clearFiltersButton" text="🗑️ Effacer les filtres" 
+                        style="-fx-background-color: #718096; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+            </HBox>
+
+            <!-- Inventory Table -->
+            <TableView fx:id="inventoryTable" prefHeight="400.0">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="nameColumn" text="Nom" prefWidth="200"/>
+                    <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="150"/>
+                    <TableColumn fx:id="priceColumn" text="Prix" prefWidth="100"/>
+                    <TableColumn fx:id="quantityColumn" text="Stock" prefWidth="100"/>
+                    <TableColumn fx:id="expiryColumn" text="Expiration" prefWidth="120"/>
+                    <TableColumn fx:id="statusColumn" text="Statut" prefWidth="120"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <!-- Action Buttons -->
+            <HBox spacing="15.0" alignment="CENTER">
+                <Button fx:id="addNewButton" text="➕ Ajouter un nouvel article" 
+                        style="-fx-background-color: #27ae60; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;"/>
+                
+                <Button fx:id="lowStockButton" text="📊 Articles à faible stock" 
+                        style="-fx-background-color: #ecc94b; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;"/>
+                
+                <Button fx:id="expiredButton" text="⚠️ Articles périmés" 
+                        style="-fx-background-color: #e74c3c; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;"/>
+                
+                <Button fx:id="backButton" text="🔙 Retour" 
+                        style="-fx-background-color: #718096; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 10 20;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
