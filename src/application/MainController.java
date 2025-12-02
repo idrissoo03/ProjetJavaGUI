@@ -4,6 +4,7 @@ import InventaireArticle.ArticleNonPerissable;
 import InventaireArticle.ArticlePerissable;
 import InventaireArticle.Caisse;
 import InventaireArticle.Inventaire;
+import InventaireArticle.Vente;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -89,6 +90,7 @@ public class MainController {
             "A008", "Tomates fraîches 1kg", 3.20, 50, "Fruits et légumes", 
             java.time.LocalDate.now().plusDays(4)
         );
+        Vente v1 = new Vente ("V0003");
         
         inventaire.ajouterArticle(lait);
         inventaire.ajouterArticle(pain);

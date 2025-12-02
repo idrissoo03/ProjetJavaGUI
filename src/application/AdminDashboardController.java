@@ -48,9 +48,6 @@ public class AdminDashboardController {
     private Button viewSalesButton;
 
     @FXML
-    private Button checkExpiredButton;
-
-    @FXML
     private Button logoutButton;
 
     private Administrateur admin;
@@ -159,41 +156,6 @@ public class AdminDashboardController {
             showError("Erreur lors de l'ouverture des ventes: " + e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void handleCheckExpired() {
-        // Your exact logic from main
-        StringBuilder expiredInfo = new StringBuilder();
-        var perimes = inventaire.iterArticlesPerimes();
-        
-        if (perimes.isEmpty()) {
-            expiredInfo.append("✓ Aucun article périmé\n");
-        } else {
-            expiredInfo.append("=== ARTICLES PÉRIMÉS ===\n");
-            for (ArticleEpicerie article : perimes) {
-                expiredInfo.append(article.toString()).append("\n");
-            }
-            expiredInfo.append("\nTotal: ").append(perimes.size()).append(" article(s) périmé(s)\n\n");
-        }
-
-        expiredInfo.append("=== ARTICLES PROCHES DE L'EXPIRATION ===\n");
-        boolean aucunProche = true;
-        for (ArticleEpicerie article : inventaire.getArticles().values()) {
-            if (article instanceof ArticlePerissable) {
-                ArticlePerissable perissable = (ArticlePerissable) article;
-                if (!perissable.estPerime() && perissable.getJoursRestants() <= 7) {
-                    expiredInfo.append(article.toString()).append("\n");
-                    aucunProche = false;
-                }
-            }
-        }
-        
-        if (aucunProche) {
-            expiredInfo.append("✓ Aucun article proche de l'expiration");
-        }
-
-        showInformation("Vérification des articles", expiredInfo.toString());
     }
 
     @FXML

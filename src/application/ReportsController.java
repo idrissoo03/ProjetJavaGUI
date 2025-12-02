@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 import InventaireArticle.ArticleEpicerie;
 import InventaireArticle.ArticlePerissable;
 import InventaireArticle.Caisse;
@@ -48,7 +49,7 @@ public class ReportsController implements Initializable {
     @FXML private Label averageSaleLabel;
     @FXML private TableView<Object> salesTable; // Changed to Object to handle different data types
     @FXML private TableColumn<Object, String> saleIdColumn;
-    @FXML private TableColumn<Object, String> saleDateColumn;
+    @FXML private TableColumn<Object, LocalDate> saleDateColumn;
     @FXML private TableColumn<Object, Integer> saleItemsColumn;
     @FXML private TableColumn<Object, Double> saleTotalColumn;
 
@@ -112,10 +113,11 @@ public class ReportsController implements Initializable {
 
     private void setupTableColumns() {
         // Sales table columns - will be reused for different data types
-        saleIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        saleDateColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        saleItemsColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        saleTotalColumn.setCellValueFactory(new PropertyValueFactory<>("totalValue"));
+    	saleIdColumn.setCellValueFactory(new PropertyValueFactory<>("idVente"));
+    	saleDateColumn.setCellValueFactory(new PropertyValueFactory<>("date")); 
+    	saleItemsColumn.setCellValueFactory(new PropertyValueFactory<>("nombreArticles"));
+    	saleTotalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+
 
         // Format total column
         saleTotalColumn.setCellFactory(column -> new TableCell<Object, Double>() {
@@ -146,19 +148,23 @@ public class ReportsController implements Initializable {
         });
 
         // Format name/date column
-        saleDateColumn.setCellFactory(column -> new TableCell<Object, String>() {
+        saleDateColumn.setCellFactory(column -> new TableCell<Object, LocalDate>() {
             @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
+            protected void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (empty || date == null) {
                     setText(null);
+                    setStyle("");
                 } else {
-                    setText(item);
+                    // Format LocalDate as string
+                    setText(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                     setStyle("-fx-font-weight: bold;");
                 }
             }
         });
+        
     }
+    
 
     private void setupEventHandlers() {
         generateReportButton.setOnAction(e -> generateReport());
@@ -413,15 +419,59 @@ public class ReportsController implements Initializable {
 
     @FXML
     private void exportReport() {
-        // Simple export functionality - you can enhance this later
-        String reportType = "";
-        if (salesReportRadio.isSelected()) reportType = "Ventes";
-        else if (inventoryReportRadio.isSelected()) reportType = "Inventaire";
-        else if (expiredReportRadio.isSelected()) reportType = "Articles périmés";
-        else if (lowStockReportRadio.isSelected()) reportType = "Stock faible";
+        if (salesTable.getItems().isEmpty()) {
+            showError("Aucune donnée à exporter !");
+            return;
+        }
 
-        showInformation("Export", "Rapport " + reportType + " exporté avec succès!\n\nFonctionnalité d'export complète à implémenter.");
+        // Choose file location using FileChooser
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        fileChooser.setTitle("Exporter le rapport en CSV");
+        fileChooser.getExtensionFilters().add(new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        java.io.File file = fileChooser.showSaveDialog(exportReportButton.getScene().getWindow());
+
+        if (file == null) {
+            return; // User cancelled
+        }
+
+        try (java.io.PrintWriter writer = new java.io.PrintWriter(file)) {
+            // Write header based on selected report type
+            if (salesReportRadio.isSelected()) {
+                writer.println("ID Vente,Date,Nombre Articles,Total");
+                for (Object obj : salesTable.getItems()) {
+                    if (obj instanceof Vente vente) {
+                        String line = String.format("%s,%s,%d,%.2f",
+                                vente.getIdVente(),
+                                vente.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                                vente.getNombreArticles(),
+                                vente.getTotal());
+                        writer.println(line);
+                    }
+                }
+            } else { // Inventory, expired, low stock reports
+                writer.println("ID Article,Nom,Quantité,Prix,Valeur Totale");
+                for (Object obj : salesTable.getItems()) {
+                    if (obj instanceof InventoryTableItem item) {
+                        String line = String.format("%s,%s,%d,%.2f,%.2f",
+                                item.getId(),
+                                item.getName(),
+                                item.getQuantity(),
+                                item.getPrice(),
+                                item.getTotalValue());
+                        writer.println(line);
+                    }
+                }
+            }
+
+            showInformation("Export réussi", "Rapport exporté avec succès :\n" + file.getAbsolutePath());
+
+        } catch (Exception e) {
+            showError("Erreur lors de l'exportation : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
+    
 
     @FXML
     private void goBack() {

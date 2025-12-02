@@ -252,7 +252,7 @@ public class SalesViewController implements Initializable {
                 endDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
     }
-
+    //bouton details
     private void showSaleDetails(Vente vente) {
         StringBuilder details = new StringBuilder();
         details.append("=== FACTURE DÉTAILLÉE ===\n");
